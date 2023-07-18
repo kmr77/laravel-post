@@ -34,9 +34,15 @@ class PostController extends Controller
             'image' => 'image|max:1024'
         ]);
         $post = new Post();
-        $post->title = $request->title;
-        $post->body = $request->body;
+        $post->title = $inputs['title'];
+        $post->body = $inputs['body'];
         $post->user_id = auth()->user()->id;
+        if(request('image')){
+            $original = request()->file('image')->getClientOriginalName();
+            $name = date('Ymd_His').'_'.$original;
+            request()->file('image')->storeAs('public/images', $name);
+            $post->image = $name;
+        }
         $post->save();
         return redirect()->route('post.create')->with('message', '投稿を作成しました');
     }
