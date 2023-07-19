@@ -42,7 +42,7 @@ class PostController extends Controller
         if(request('image')){
             $original = request()->file('image')->getClientOriginalName();
             $name = date('Ymd_His').'_'.$original;
-            request()->file('image')->storeAs('public/images', $name);
+            request()->file('image')->move('storage/images', $name);
             $post->image = $name;
         }
         $post->save();
