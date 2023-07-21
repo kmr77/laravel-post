@@ -16,6 +16,10 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
