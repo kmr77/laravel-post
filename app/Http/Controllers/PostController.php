@@ -12,7 +12,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        // 新しい投稿順↓
         $posts = Post::orderBy('created_at','desc')->get();
+        // $posts = Post::inRandomOrder()->get(); //←ランダム順表示で表示したい場合
         $user = auth()->user();
         return view('post.index', compact('posts', 'user'));
     }
