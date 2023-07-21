@@ -10,8 +10,13 @@
 
     {{-- 投稿一覧表示用のコード --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{ $user->name }}さん。こんにちは！
-        @foreach ($posts as $post)
+        @if (count($comments) == 0)
+            <p class="mt-4">あなたはまだ投稿していません。</p>
+        @else
+        @foreach ($comments->unique('post_id') as $comment)
+        @php
+            $post = $comment->post
+        @endphp
             <div class="mx-4 sm:p-8">
                 <div class="mt-4">
                     <div class="bg-white w-full  rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
@@ -21,7 +26,8 @@
                             <hr class="w-full">
                             <p class="mt-4 text-gray-600 py-4">{{ Str::limit($post->body ,100, '...') }}</p>
                             <div class="text-sm font-semibold flex flex-row-reverse">
-                                <p>アカウント名【{{ $post->user->name }}】 ・ 最終更新：{{ $post->created_at->diffForHumans() }}</p>
+                                <!-- コメントの新しい順に変更した $comment->created_at -->
+                                <p>{{ $post->user->name }} • {{ $comment->created_at->diffForHumans() }}</p>
                             </div>
                             {{-- 追加部分 --}}
                             <hr class="w-full mb-2">
@@ -40,5 +46,6 @@
                 </div>
             </div>
         @endforeach
+        @endif
     </div>
 </x-app-layout>
