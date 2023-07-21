@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
 Route::resource('post', PostController::class);
 
 Route::post('post/comment/store',[CommentController::class, 'store'])->name('comment.store');
