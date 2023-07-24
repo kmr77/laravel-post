@@ -18,7 +18,7 @@ use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('top');
 
 Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
 Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
