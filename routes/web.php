@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,14 @@ Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.m
 Route::resource('post', PostController::class);
 
 Route::post('post/comment/store',[CommentController::class, 'store'])->name('comment.store');
+
+Route::get('contact/create', [ContactController::class, 'create'])->name('contact.create');
+Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
+//↓同じコントローラを使用する時のまとめる書き方
+// Route::controller(ContactController::class)->group(function(){
+//     Route::get('contact/create', 'create')->name('contact.create');
+//     Route::post('contact/store', 'store')->name('contact.store');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
