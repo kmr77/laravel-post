@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -25,6 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        // Gate::authorize('admin'); Contollerでadmin以外操作できなくする記述→この場合は投稿できなくなる
         return view('post.create');
     }
 
