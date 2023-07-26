@@ -12,8 +12,8 @@
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
-
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    {{-- enctype="multipart/form-data"  追加 --}}
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -46,6 +46,17 @@
                 </div>
             @endif
         </div>
+
+        {{-- アバター更新用に追加 --}}
+        <div>
+            <x-input-label for="avatar" :value="__('プロフィール画像（任意・1MBまで）')" />
+            <div class="rounded-full w-36">
+                <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}">
+            </div>
+            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar')" />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
+        {{-- アバター更新用に追加ここまで --}}
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
