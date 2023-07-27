@@ -36,7 +36,7 @@
                             <p class="mt-4 text-gray-600 py-4">{{ Str::limit($post->body ,100, '...') }}</p>
                             <div class="text-sm font-semibold flex flex-row-reverse">
                                 <!-- コメントの新しい順に変更した $comment->created_at -->
-                                <p>{{ $post->user->name }} • {{ $comment->created_at->diffForHumans() }}</p>
+                                <p>{{ $post->user->name??'削除されたユーザー' }} • {{ $comment->created_at->diffForHumans() }}</p>
                             </div>
                             {{-- 追加部分 --}}
                             <hr class="w-full mb-2">

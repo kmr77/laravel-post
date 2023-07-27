@@ -10,7 +10,7 @@
 
     {{-- 投稿一覧表示用のコード --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {{ $user->name }}さん。こんにちは！
+        {{ $user->name??'削除されたユーザー' }}さん。こんにちは！
         @foreach ($posts as $post)
             <div class="mx-4 sm:p-8">
                 <div class="mt-4">
@@ -30,7 +30,7 @@
                             <hr class="w-full">
                             <p class="mt-4 text-gray-600 py-4">{{ Str::limit($post->body ,100, '...') }}</p>
                             <div class="text-sm font-semibold flex flex-row-reverse">
-                                <p>アカウント名【{{ $post->user->name }}】 ・ 最終更新：{{ $post->created_at->diffForHumans() }}</p>
+                                <p>アカウント名【{{ $post->user->name??'削除されたユーザー' }}】 ・ 最終更新：{{ $post->created_at->diffForHumans() }}</p>
                             </div>
                             {{-- 追加部分 --}}
                             <hr class="w-full mb-2">
