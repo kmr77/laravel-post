@@ -9,6 +9,15 @@
         </p>
     </header>
 
+    @if(!isset($admin))
+    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+        @csrf
+    </form>
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+    @else
+    <form method="post" action="{{ route('profile.adupdate', $user) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+    @endif
+
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
@@ -57,6 +66,10 @@
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
         {{-- アバター更新用に追加ここまで --}}
+        {{-- $user情報をhiddenで渡す --}}
+        @if(isset($admin)) 
+            <input type="hidden" value={{$user->id}} name="user">
+        @endif
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
