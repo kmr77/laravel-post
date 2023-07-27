@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -80,17 +81,18 @@ class ProfileController extends Controller
     }
 
     public function adedit(User $user) {
-        $admin = true;
+        $admin=true;
+        $roles=Role::all();
 
         return view('profile.edit', [
             'user' => $user,
             'admin' => $admin,
+            'roles' => $roles
         ]);
     }
     
     public function adupdate(Request $request): RedirectResponse
     {
-        dd($request);
         $inputs=$request->validate([
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($request->user)],

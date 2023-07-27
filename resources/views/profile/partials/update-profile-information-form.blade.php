@@ -10,21 +10,15 @@
     </header>
 
     @if(!isset($admin))
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+        <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    @csrf
+        </form>
+        <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
     @else
-    <form method="post" action="{{ route('profile.adupdate', $user) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+        <form method="post" action="{{ route('profile.adupdate', $user) }}" class="mt-6 space-y-6" enctype="multipart/form-data">
     @endif
-
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-    {{-- enctype="multipart/form-data"  追加 --}}
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
-        @csrf
-        @method('patch')
+    @csrf
+    @method('patch')
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
