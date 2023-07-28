@@ -16,7 +16,8 @@ use Illuminate\Validation\Rule;
 class ProfileController extends Controller
 {
     public function index(){
-        $users =User::all();
+        // $users =User::all();
+        $users =User::withTrashed()->get();
         return view('profile.index', compact('users'));
     }
     
