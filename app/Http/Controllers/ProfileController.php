@@ -16,8 +16,9 @@ use Illuminate\Validation\Rule;
 class ProfileController extends Controller
 {
     public function index(){
-        // $users =User::all();
-        $users =User::withTrashed()->get();
+        // $users =User::all(); //ソフトデリートしたものは含まず表示
+        $users =User::withTrashed()->get();//ソフトデリートを含んで表示
+        // $users =User::onlyTrashed()->get();//ソフトデリートしたものだけ表示
         return view('profile.index', compact('users'));
     }
     
@@ -129,7 +130,7 @@ class ProfileController extends Controller
             $oldavatar='public/avatar/'.$user->avatar;
             Storage::delete($oldavatar);
         }
-        $user = User::find($request->input('id'));
+        // $user = User::find($request->input('id'));
         $user->roles()->detach();
         $user->delete();
         return back()->with('message', 'ユーザーを削除しました');
@@ -138,5 +139,11 @@ class ProfileController extends Controller
     public function isdelete(User $user) {
         $user->delete();
         return back()->with('message', 'ユーザーを削除しました');
+    }
+
+    //論理削除から戻す
+    public function restore(User $user) {
+        User::onlyTrashed()->where('id', $user->id)->restore();
+        return redirect()->route('profile.index');
     }
 }

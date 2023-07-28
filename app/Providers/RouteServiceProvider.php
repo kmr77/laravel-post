@@ -37,5 +37,9 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        route::bind('trashed_user', function($id) {
+            return \App\Models\User::onlyTrashed()->find($id);
+        });
     }
 }

@@ -46,6 +46,7 @@ Route::middleware(['verified'])->group(function(){
         Route::patch('/profile/adupdate/{user}', [ProfileController::class, 'adupdate'])->name('profile.adupdate');
         Route::delete('profile/{user}', [ProfileController::class, 'addestroy'])->name('profile.addestroy');
         Route::patch('profile/{user}', [ProfileController::class, 'isdelete'])->name('profile.isdelete');
+        Route::patch('profile/restore/{trashed_user}', [ProfileController::class, 'restore'])->name('profile.restore');
         Route::patch('roles/{user}/attach', [RoleController::class, 'attach'])->name('role.attach');
         Route::patch('roles/{user}/detach', [RoleController::class, 'detach'])->name('role.detach');
     });
