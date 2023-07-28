@@ -122,12 +122,13 @@ class ProfileController extends Controller
         return Redirect::route('profile.adedit', compact('user'))->with('status', 'profile-updated');
     }
 
-    public function addestroy(User $user) {
-        if($user->avatar!=='user_default.jpg') {
-            $oldavatar='public/avatar/'.$user->avatar;
-            Storage::delete($oldavatar);
-        }
-        $user->roles()->detach();
+    public function addestroy(User $user, Request $request) {
+        // if($user->avatar!=='user_default.jpg') {
+        //     $oldavatar='public/avatar/'.$user->avatar;
+        //     Storage::delete($oldavatar);
+        // }
+        // $user = User::find($request->input('id'));
+        // $user->roles()->detach();
         $user->delete();
         return back()->with('message', 'ユーザーを削除しました');
     }

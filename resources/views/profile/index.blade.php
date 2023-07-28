@@ -33,7 +33,7 @@
                     <td class="border-gray-light border hover:bg-gray-100 p-3">
                         <form method="post" action="{{route('profile.addestroy', $user)}}">
                             @csrf
-                            @method('delete')
+                            @method('patch')
                             <x-primary-button class="bg-red-700" onClick="return confirm('本当に削除しますか？');">削除</x-primary-button>
                         </form>
                     </td>
