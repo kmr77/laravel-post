@@ -14,7 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    protected $table = 'users';
+    // protected $table = 'users';
     protected $dates = ['deleted_at'];
 
     public function sendEmailVerificationNotification(){
