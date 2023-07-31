@@ -9,6 +9,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p class="text-right mt-4"><a href="{{route('profile.index')}}">一覧に戻る</a></p>
         <div class="mt-4 mb-6">
+            @if (count($users) == 0)
+            削除したユーザーはいません。
+            @else
             <table class="text-left w-full border-collapse"> 
                 <tr class="bg-green-600">
                     <th class="p-3 text-left text-white">＃</th>
@@ -45,6 +48,7 @@
                 </tr>
                 @endforeach
             </table>
+            @endif
          </div>
     </div>
 </x-app-layout>
