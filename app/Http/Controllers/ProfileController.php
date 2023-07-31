@@ -144,7 +144,7 @@ class ProfileController extends Controller
     //論理削除から戻す
     public function restore(User $user) {
         User::onlyTrashed()->where('id', $user->id)->restore();
-        return redirect()->route('profile.index');
+        return back();
     }
 
     //ゴミ箱 論理削除ユーザー一覧
