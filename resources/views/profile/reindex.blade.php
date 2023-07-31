@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            ユーザー一覧
+            ゴミ箱
         </h2>
         <x-message :message="session('message')" />
     </x-slot>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-right mt-4"><a href="{{route('profile.reindex')}}">ゴミ箱を見る</a></p>
+        <p class="text-right mt-4"><a href="{{route('profile.index')}}">一覧に戻る</a></p>
         <div class="mt-4 mb-6">
             <table class="text-left w-full border-collapse"> 
                 <tr class="bg-green-600">
@@ -15,8 +15,8 @@
                     <th class="p-3 text-left text-white">名前</th>
                     <th class="p-3 text-left text-white">Email</th>
                     <th class="p-3 text-left text-white">アバター</th>
-                    <th class="p-3 text-left text-white">編集</th>
-                    <th class="p-3 text-left text-white">論理削除</th>
+                    <th class="p-3 text-left text-white">復活</th>
+                    <th class="p-3 text-left text-white">物理削除</th>
                 </tr>
                 @foreach($users as $user) 
                 <tr class="bg-white">
@@ -29,13 +29,17 @@
                         </div>
                     </td>
                     <td class="border-gray-light border hover:bg-gray-100 p-3">
-                        <a href="{{route('profile.adedit', $user)}}"><x-primary-button class="bg-teal-700">編集</x-primary-button></a>
-                    </td>
-                    <td class="border-gray-light border hover:bg-gray-100 p-3">
-                        <form method="post" action="{{route('profile.isdelete', $user)}}">
+                        <form method="post" action="{{route('profile.restore', $user)}}">
                             @csrf
                             @method('patch')
-                            <x-primary-button class="bg-pink-300 text-black" onClick="return confirm('ゴミ箱に移動しますか？');">ゴミ箱に移動</x-primary-button>
+                            <x-primary-button class="bg-blue-700">元に戻す</x-primary-button>
+                        </form>
+                    </td>
+                    <td class="border-gray-light border hover:bg-gray-100 p-3">
+                        <form method="post" action="{{route('profile.addestroy', $user)}}">
+                            @csrf
+                            @method('delete')
+                            <x-primary-button class="bg-red-700" onClick="return confirm('本当に削除しますか？');">物理削除</x-primary-button>
                         </form>
                     </td>
                 </tr>

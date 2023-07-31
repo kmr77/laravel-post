@@ -42,6 +42,7 @@ Route::middleware(['verified'])->group(function(){
     // 管理者用画面
     Route::middleware(['auth', 'can:admin'])->group(function () {
         Route::get('profile/index', [ProfileController::class, 'index'])->name('profile.index');
+        Route::get('profile/reindex', [ProfileController::class, 'reindex'])->name('profile.reindex');
         Route::get('/profile/adedit/{user}', [ProfileController::class, 'adedit'])->name('profile.adedit');
         Route::patch('/profile/adupdate/{user}', [ProfileController::class, 'adupdate'])->name('profile.adupdate');
         Route::delete('profile/{user}', [ProfileController::class, 'addestroy'])->name('profile.addestroy');

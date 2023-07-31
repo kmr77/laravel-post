@@ -28,6 +28,9 @@
                     <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
                         ユーザー一覧
                     </x-nav-link>
+                    <x-nav-link :href="route('profile.reindex')" :active="request()->routeIs('profile.reindex')">
+                        ゴミ箱
+                    </x-nav-link>
                     @endcan
                 </div>
             </div>
@@ -98,6 +101,9 @@
             @can('admin')
             <x-responsive-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
                 ユーザー一覧
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('profile.reindex')" :active="request()->routeIs('profile.reindex')">
+                ゴミ箱
             </x-responsive-nav-link>
             @endcan
         </div>

@@ -16,8 +16,8 @@ use Illuminate\Validation\Rule;
 class ProfileController extends Controller
 {
     public function index(){
-        // $users =User::all(); //ソフトデリートしたものは含まず表示
-        $users =User::withTrashed()->get();//ソフトデリートを含んで表示
+        $users =User::all(); //ソフトデリートしたものは含まず表示
+        // $users =User::withTrashed()->get();//ソフトデリートを含んで表示
         // $users =User::onlyTrashed()->get();//ソフトデリートしたものだけ表示
         return view('profile.index', compact('users'));
     }
@@ -145,5 +145,11 @@ class ProfileController extends Controller
     public function restore(User $user) {
         User::onlyTrashed()->where('id', $user->id)->restore();
         return redirect()->route('profile.index');
+    }
+
+    //ゴミ箱 論理削除ユーザー一覧
+    public function reindex(User $user) {
+        $users =User::onlyTrashed()->get();
+        return view('profile.reindex', compact('users'));
     }
 }
