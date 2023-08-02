@@ -12,6 +12,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {{ $user->name??'削除されたユーザー' }}さん。こんにちは！
         @foreach ($posts as $post)
+        {{-- プランの表示制御 --}}
         @if ($post->user->bplan)
             <div class="mx-4 sm:p-8">
                 <div class="mt-4">
