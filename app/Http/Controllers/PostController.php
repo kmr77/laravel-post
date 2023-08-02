@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,7 +23,8 @@ class PostController extends Controller
         $posts = Post::orderBy('created_at','desc')->get();
         // $posts = Post::inRandomOrder()->get(); //←ランダム順表示で表示したい場合
         $user = auth()->user();
-        return view('post.index', compact('posts', 'user'));
+        $plans = Plan::all();
+        return view('post.index', compact('posts', 'user', 'plans'));
     }
 
     /**
