@@ -35,7 +35,7 @@
                         <form method="post" action="{{route('profile.isdelete', $user)}}">
                             @csrf
                             @method('patch')
-                            <x-primary-button class="bg-pink-300 text-black" onClick="return confirm('ゴミ箱に移動しますか？');">ゴミ箱に移動</x-primary-button>
+                            <x-primary-button class="bg-gray-300 text-black" onClick="return confirm('ゴミ箱に移動しますか？');">ゴミ箱に移動</x-primary-button>
                         </form>
                     </td>
                 </tr>
