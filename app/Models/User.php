@@ -33,6 +33,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class);
     }
 
+    public function plans() {
+        return $this->belongsToMany(Plan::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
