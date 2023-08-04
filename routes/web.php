@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,8 @@ Route::middleware(['verified'])->group(function(){
         Route::patch('profile/restore/{trashed_user}', [ProfileController::class, 'restore'])->name('profile.restore');
         Route::patch('roles/{user}/attach', [RoleController::class, 'attach'])->name('role.attach');
         Route::patch('roles/{user}/detach', [RoleController::class, 'detach'])->name('role.detach');
+        Route::patch('plans/{user}/attach', [PlanController::class, 'attach'])->name('plan.attach');
+        Route::patch('plans/{user}/detach', [PlanController::class, 'detach'])->name('plan.detach');
     });
 });
 

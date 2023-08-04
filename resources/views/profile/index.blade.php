@@ -35,7 +35,10 @@
                         <form method="post" action="{{route('profile.isdelete', $user)}}">
                             @csrf
                             @method('patch')
+                            @if(!isset($admin)) 
+                            {{--管理者のゴミ箱に移動だけ非表示にしたい--}}
                             <x-primary-button class="bg-gray-300 text-black" onClick="return confirm('ゴミ箱に移動しますか？');">ゴミ箱に移動</x-primary-button>
+                        @endif
                         </form>
                     </td>
                 </tr>

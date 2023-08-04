@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Plan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -19,7 +20,8 @@ class ProfileController extends Controller
         $users =User::all(); //ソフトデリートしたものは含まず表示
         // $users =User::withTrashed()->get();//ソフトデリートを含んで表示
         // $users =User::onlyTrashed()->get();//ソフトデリートしたものだけ表示
-        return view('profile.index', compact('users'));
+        $roles = Role::all();
+        return view('profile.index', compact('users', 'roles'));
     }
     
     /**
@@ -85,11 +87,13 @@ class ProfileController extends Controller
     public function adedit(User $user) {
         $admin=true;
         $roles=Role::all();
+        $plans=Plan::all();
 
         return view('profile.edit', [
             'user' => $user,
             'admin' => $admin,
-            'roles' => $roles
+            'roles' => $roles,
+            'plans' => $plans
         ]);
     }
     
