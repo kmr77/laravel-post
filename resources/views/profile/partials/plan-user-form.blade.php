@@ -1,11 +1,15 @@
 <div class="mt-5">
     <h4 class="mb-3">プラン付与・変更（アドミンユーザーにのみ表示）</h4>
+    
     <table class="text-left w-full border-collapse mt-8"> 
         <tr class="bg-green-600 text-center">
             <th>役割</th>
             <th>ON</th>
             <th>OFF</th>
         </tr>
+        {{--ここに現在のプランを表示したいがuserがplan_idを持っているわけではないので表示は難しい？--}}
+        現在設定中のプラン：
+        <p>{{--$user->plans--}}</p>
         @foreach ($plans as $plan)
         <tr class="bg-white text-center">
             <td class="p-3">
@@ -18,8 +22,9 @@
                     @method('patch')
                     <input type="hidden" name="plan" value="{{$plan->id}}">
                     <button class="btnroleb
-                    {{$user->plans->contains($plan)}}
+                    @if($user->plans->contains($plan))
                         bg-gray-300
+                        @endif
                         "
                         @if($user->plans->contains($plan))
                             disabled
@@ -35,10 +40,11 @@
                     @method('patch')
                     <input type="hidden" name="plan" value="{{$plan->id}}">
                         <button class="btnroler 
-                        {{$user->plans->contains($plan)}}
+                        @if(!$user->plans->contains($plan))
                         bg-gray-300
+                        @endif
                         "
-                        @if($user->plans->contains($plan))
+                        @if(!$user->plans->contains($plan))
                             disabled
                         @endif
                         >
