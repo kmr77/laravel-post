@@ -34,6 +34,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'avatar' => ['image','max:1024'],
+            'aplan' => ['string', 'max:2', 'nullable'],
+            'bplan' => ['string', 'max:2', 'nullable'],
+            'cplan' => ['string', 'max:2', 'nullable'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -41,6 +44,9 @@ class RegisteredUserController extends Controller
         $attr = [
             'name' => $request->name,
             'email' => $request->email,
+            'aplan' => $request->aplan,
+            'bplan' => $request->bplan,
+            'cplan' => $request->cplan,
             'password' => Hash::make($request->password),
         ];
 
@@ -50,7 +56,7 @@ class RegisteredUserController extends Controller
             $avatar = date('Ymd_His').'_'.$name;
             request()->file('avatar')->storeAs('public/avatar', $avatar);
             //avatarファイル名をデータに追加
-            $attr['avatar'] = $avatar;
+            $attr['avatar']=$avatar;
         }
         $user=User::create($attr);
 

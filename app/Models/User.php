@@ -47,6 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'avatar',
         'password',
+        'aplan',
+        'bplan',
+        'cplan',
     ];
 
     /**
