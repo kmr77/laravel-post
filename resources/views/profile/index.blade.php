@@ -15,6 +15,7 @@
                     <th class="p-3 text-left text-white">名前</th>
                     <th class="p-3 text-left text-white">Email</th>
                     <th class="p-3 text-left text-white">アバター</th>
+                    <th class="p-3 text-left text-white">プラン</th>
                     <th class="p-3 text-left text-white">編集</th>
                     <th class="p-3 text-left text-white">論理削除</th>
                 </tr>
@@ -27,6 +28,11 @@
                         <div class="rounded-full w-12 h-12">
                             <img src="{{asset('storage/avatar/'.($user->avatar??'user_default.jpg'))}}">
                         </div>
+                    </td>
+                    <td class="border-gray-light border hover:bg-gray-100 p-3">
+                        <span>{{$user->aplan}}</span>
+                        <span>{{$user->bplan}}</span>
+                        <span>{{$user->cplan}}</span>
                     </td>
                     <td class="border-gray-light border hover:bg-gray-100 p-3">
                         <a href="{{route('profile.adedit', $user)}}"><x-primary-button class="bg-teal-700">編集</x-primary-button></a>
