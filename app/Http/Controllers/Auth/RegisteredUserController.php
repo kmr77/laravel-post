@@ -34,9 +34,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'avatar' => ['image','max:1024'],
-            'aplan' => ['string', 'max:2', 'nullable'],
-            'bplan' => ['string', 'max:2', 'nullable'],
-            'cplan' => ['string', 'max:2', 'nullable'],
+            'aplan' => ['integer', 'max:1', 'nullable'],
+            'bplan' => ['integer', 'max:1', 'nullable'],
+            'cplan' => ['integer', 'max:1', 'nullable'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -44,9 +44,9 @@ class RegisteredUserController extends Controller
         $attr = [
             'name' => $request->name,
             'email' => $request->email,
-            'aplan' => $request->aplan,
-            'bplan' => $request->bplan,
-            'cplan' => $request->cplan,
+            'aplan' => 0,
+            'bplan' => 0,
+            'cplan' => 1,
             'password' => Hash::make($request->password),
         ];
 
