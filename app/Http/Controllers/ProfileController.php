@@ -24,6 +24,10 @@ class ProfileController extends Controller
         return view('profile.index', compact('users', 'roles'));
     }
     
+    public function show(User $user){
+        return view('profile.show', compact('user'));
+    }
+    
     /**
      * Display the user's profile form.
      */

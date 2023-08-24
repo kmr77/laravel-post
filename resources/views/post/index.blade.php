@@ -32,7 +32,7 @@
                             <hr class="w-full">
                             <p class="mt-4 text-gray-600 py-4">{{ Str::limit($post->body ,100, '...') }}</p>
                             <div class="text-sm font-semibold flex flex-row-reverse">
-                                <p>アカウント名【{{ $post->user->name??'削除されたユーザー' }}】 ・ 最終更新：{{ $post->created_at->diffForHumans() }} 【{{ $post->user->bplan ? $post->user->bplan : '別のプランです' }}プラン】</p>
+                                <p>アカウント名<a href="{{route('profile.show', $post->user->id)}}">【{{ $post->user->name??'削除されたユーザー' }}】</a> ・ 最終更新：{{ $post->created_at->diffForHumans() }} 【{{ $post->user->bplan ? $post->user->bplan : '別のプランです' }}プラン】</p>
                             </div>
                             {{-- 追加部分 --}}
                             <hr class="w-full mb-2">
