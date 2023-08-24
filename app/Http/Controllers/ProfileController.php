@@ -120,13 +120,23 @@ class ProfileController extends Controller
             request()->file('avatar')->storeAs('public/avatar', $avatar);
             $user->avatar = $avatar;
         }
-
+        //このメソッドでプランを更新するのが難しいかもしれない
         $user->name=$inputs['name'];
         $user->email=$inputs['email'];
         $user->save();
 
         return Redirect::route('profile.adedit', compact('user'))->with('status', 'profile-updated');
     }
+
+    public function planupdate(Request $request, User $user)
+    {
+        // リクエストデータからプランの状態を取得
+        $plans = $request->only(['aplan', 'bplan', 'cplan']);
+        $user->update($plans);
+
+        return response()->json($user);
+    }
+
 
     //物理削除
     public function addestroy(User $user) {

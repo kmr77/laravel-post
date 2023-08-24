@@ -30,9 +30,15 @@
                         </div>
                     </td>
                     <td class="border-gray-light border hover:bg-gray-100 p-3">
-                        <span>{{$user->aplan}}</span>
-                        <span>{{$user->bplan}}</span>
-                        <span>{{$user->cplan}}</span>
+                        @if(($user->aplan === 1))
+                            <span>A</span>
+                        @endif
+                        @if(($user->bplan === 1))
+                            <span>B</span>
+                        @endif
+                        @if(($user->cplan === 1))
+                            <span>C</span>
+                        @endif
                     </td>
                     <td class="border-gray-light border hover:bg-gray-100 p-3">
                         <a href="{{route('profile.adedit', $user)}}"><x-primary-button class="bg-teal-700">編集</x-primary-button></a>

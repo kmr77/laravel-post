@@ -46,6 +46,7 @@ Route::middleware(['verified'])->group(function(){
         Route::get('profile/reindex', [ProfileController::class, 'reindex'])->name('profile.reindex');
         Route::get('/profile/adedit/{user}', [ProfileController::class, 'adedit'])->name('profile.adedit');
         Route::patch('/profile/adupdate/{user}', [ProfileController::class, 'adupdate'])->name('profile.adupdate');
+        Route::patch('/profile/planupdate/{user}', [ProfileController::class, 'planupdate'])->name('profile.planupdate');
         Route::delete('profile/{user}', [ProfileController::class, 'addestroy'])->name('profile.addestroy');
         Route::patch('profile/{user}', [ProfileController::class, 'isdelete'])->name('profile.isdelete');
         Route::patch('profile/restore/{trashed_user}', [ProfileController::class, 'restore'])->name('profile.restore');
