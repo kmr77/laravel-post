@@ -32,13 +32,14 @@
             @endif
 
             {{-- プラン更部分にif構文を追加（管理者のみ編集可） --}}
+            {{-- 中間テーブルを使って作ってみた部分
             @if(isset($admin)) 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.plan-user-form')
                 </div>
             </div>
-            @endif
+            @endif --}}
 
             {{-- 役割変更部分にif構文を追加（管理者のみ編集可） --}}
             @if(isset($admin)) 

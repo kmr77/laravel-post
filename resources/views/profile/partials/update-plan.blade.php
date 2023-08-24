@@ -1,6 +1,6 @@
 <div class="mt-5">
-    <h4 class="mb-3">Userテーブルのプランに付与（アドミンユーザーにのみ表示）</h4>
-    
+    <h4 class="mb-3">プラン変更（アドミンユーザーにのみ表示）</h4>
+    <x-message :message="session('message')" />
     <table class="text-left w-full border-collapse mt-8"> 
         <tr class="bg-green-600 text-center">
             <th>Aプラン</th>
@@ -44,6 +44,7 @@
                     const response = await axios.patch(`/profile/planupdate/${userId}`, plans);
     
                     console.log(response.data);
+                    alert('プランを更新しました。');
                     // プラン情報が更新された後の処理を記述
                 } catch (error) {
                     console.error(error);
