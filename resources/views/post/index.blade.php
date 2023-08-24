@@ -13,7 +13,7 @@
         {{ $user->name??'削除されたユーザー' }}さん。こんにちは！
         @foreach ($posts as $post)
         {{-- プランの表示制御 --}}
-        @if ($post->user->bplan)
+        {{--@if ($post->user->bplan) --}}
             <div class="mx-4 sm:p-8">
                 <div class="mt-4">
                     {{-- 修正部分 --}}
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+            {{--@endif --}}
             @endforeach
     </div>
 </x-app-layout>
