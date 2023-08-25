@@ -1,13 +1,12 @@
 {
     "version": 2,
-
     "builds": [
         {
-            "src": "/api/index.php",
+            "src": "api/index.php",
             "use": "vercel-php@0.5.2"
         },
         {
-            "src": "/public/**",
+            "src": "public/**",
             "use": "vercel-php@0.5.2"
         }
     ],
@@ -17,6 +16,7 @@
             "dest": "/api/index.php"
         }
     ],
+
     "env": {
         "APP_NAME": "Laravel Vercel",
         "APP_DEBUG": "false",
